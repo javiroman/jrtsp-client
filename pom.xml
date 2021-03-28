@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        Root Parent Multimodule Project
+    -->
+    <groupId>com.javiroman</groupId>
+    <artifactId>rtsp-client-java</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Root Project RTSP Client</name>
+
+    <!--
+         The project’s submodules. These modules are defined in the
+         modules element, and each module element corresponds to a
+         subdirectory of the root parent directory.
+    -->
+    <modules>
+        <module>test1</module>
+        <module>test2</module>
+    </modules>
+
+    <!--
+        Centralized version numbering.
+    -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <netty.version>4.1.42.Final</netty.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback-classic.version>1.2.3</logback-classic.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <commons-codec.version>1.10</commons-codec.version>
+        <junit.version>4.13.1</junit.version>
+    </properties>
+
+    <build>
+        <!--
+            Build settings which will be inherited by all submodules.
+
+        -->
+        <pluginManagement>
+            <plugins>
+                <!--
+                   This build configuration configures the target for all
+                   Java compilation to be the Java JVM. Since the compiler
+                   plugin is bound to the lifecycle by default, we can use
+                   the pluginManagement section do to this.
+                -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+            </plugins>
+       </pluginManagement>
+    </build>
+
+    <!--
+       The dependencies section in the root parent project are
+       global dependencies so are inherited by all submodules.
+    -->
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
