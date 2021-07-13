@@ -13,5 +13,6 @@ public class ClientHandler extends SimpleChannelInboundHandler<DefaultHttpRespon
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, DefaultHttpResponse msg) throws Exception {
         System.out.println("Response -" + msg.toString());
+        System.out.println("CTX -" + ctx.toString());
     }
 }

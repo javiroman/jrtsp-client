@@ -41,22 +41,26 @@ public class RtspClient {
 
     public static void main(String[] args) throws InterruptedException, UnsupportedEncodingException {
         setBasicAuth();
-        sendReq("rtsp://10.11.0.152:8554/archive/1e170451117241", false);
+        sendReq("rtsp://localhost:8554/mystream", false);
+
     }
 
     public static void sendReq(String url, boolean isRedirect) throws InterruptedException {
         Channel channel;
         if (!isRedirect)
-            channel = start("10.11.0.152", 8554);
+            channel = start("localhost", 8554);
         else
-            channel = start("10.11.0.152", 9554);
+            channel = start("localhost", 9554);
 
-        DefaultHttpRequest request = new DefaultHttpRequest(RtspVersions.RTSP_1_0, RtspMethods.DESCRIBE, url);
+        DefaultHttpRequest request = new DefaultHttpRequest(RtspVersions.RTSP_1_0,
+                RtspMethods.DESCRIBE, url);
+
         request.headers().add(RtspHeaderNames.CSEQ, getSeqNumber());
         request.headers().add(RtspHeaderNames.USER_AGENT, userAgent);
         request.headers().add(RtspHeaderNames.AUTHORIZATION, "Basic " + authStringEnc);
         request.headers().add(RtspHeaderNames.ACCEPT, "application/sdp");
-        LOGGER.info("MIERDA: " + request.toString());
+        LOGGER.info("JAVI: " + request.toString());
+
         channel.writeAndFlush(request).sync();
     }
 
